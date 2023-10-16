@@ -11,7 +11,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
@@ -60,11 +62,10 @@ public class Baseclass {
 			if (elementText.equals(textToMatch)) {
 				element.click();
 				return element;
-			}
-			else {
+			} else {
 				System.out.println("Text is Not Matched");
 			}
-			
+
 		}
 
 		return null;
@@ -107,6 +108,7 @@ public class Baseclass {
 
 	public void closeallbrowser() {
 		driver.quit();
+		System.out.println("Website is Closed");
 	}
 
 	public void alertByAccept() {
@@ -171,15 +173,22 @@ public class Baseclass {
 		}
 
 	}
-	public static void VerifyTextValidation(WebElement element,String Text) {
+
+	public static void VerifyTextValidation(WebElement element, String Text) {
 		String actualText = (element.getText()).trim();
 		try {
-			 Assert.assertEquals(actualText,Text);
-	        System.out.println("The expected '"+Text+"' popup message is verified.");
-	    } catch (AssertionError e) {
-	        System.out.println("The Expected success message is "+Text+" but the Actual message is "+actualText+"");
-	        throw e;
-	    }
+			Assert.assertEquals(actualText, Text);
+			System.out.println("The expected '" + Text + "' popup message is verified.");
+		} catch (AssertionError e) {
+			System.out.println(
+					"The Expected success message is " + Text + " but the Actual message is " + actualText + "");
+			throw e;
+		}
+	}
+
+	public static void waitForElement(WebElement element) {
+		WebDriverWait wait = new WebDriverWait(driver, 60);
+		wait.until(ExpectedConditions.visibilityOf(element));
 	}
 
 }

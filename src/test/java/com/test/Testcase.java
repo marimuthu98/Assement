@@ -15,43 +15,45 @@ import base.com.Searchpage;
 public class Testcase extends Baseclass {
 	Searchpage SEARCH_PAGE;
 
-	
 	@BeforeTest
-	private void date1(){
+	private void TIME_BEFORETEST() {
 
 		Date date = new Date();
-	    SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
-	    String time = sdf.format(date);
-	    System.out.println("Date: " + date);
-	    System.out.println("Current time: " + time);
+		SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+		String time = sdf.format(date);
+		System.out.println("Date: " + date);
+		System.out.println("Current time: " + time);
 	}
-	
 
 	@BeforeClass
 	private void BROWSER_LANUCH() throws InterruptedException {
-         browserLanuch();
-	}		
+		browserLanuch();
+	}
+
 	@Test
 	public void TC_1() throws InterruptedException {
-	
+
 		implicitlyWait(20);
 		SEARCH_PAGE = new Searchpage(driver);
-		SEARCH_PAGE.search("iphone");
-		SEARCH_PAGE.text("iphone 13");
+		SEARCH_PAGE.search_product("Apple iPhone 15 Plus (256 GB) - Green");
+		SEARCH_PAGE.searchbar_button();
+		SEARCH_PAGE.select_product();
+		SEARCH_PAGE.product_add_card();
 	}
-	
-//	@AfterClass
-//	public void CLOSE_BROWSER() {
-//		closeallbrowser();
-//	}
-//	
-//	@AfterTest
-//	private void date2(){
-//
-//		Date date = new Date();
-//	    SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
-//	    String time = sdf.format(date);
-//	    System.out.println("Current time: " + time);
-//	}
+
+	@BeforeClass
+	private void CLOSE_BROWSER() {
+		closeallbrowser();
+	}
+
+	@BeforeTest
+	private void TIME_AFTERTEST() {
+
+		Date date = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+		String time = sdf.format(date);
+		System.out.println("Date: " + date);
+		System.out.println("Current time: " + time);
+	}
 
 }

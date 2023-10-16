@@ -10,15 +10,15 @@ public class Locators {
 	@FindBy(id = "twotabsearchtextbox")
 	private WebElement search_bar;
 
-	@FindBy(xpath = "//div[@class='s-suggestion s-suggestion-ellipsis-direction']")
-	private List<WebElement> item;
+	@FindBy(id = "nav-search-submit-button")
+	private WebElement search_button;
 
 	@FindBy(xpath = "//div[@class='a-section aok-relative s-image-fixed-height']//img")
 	private WebElement product_click;
 
 	@FindBy(id = "add-to-cart-button")
 	private WebElement addToCart_button;
-	
+
 	@FindBy(css = "#attachDisplayAddBaseAlert .a-alert-heading")
 	private WebElement cartaddedmessage;
 
@@ -26,8 +26,8 @@ public class Locators {
 		return search_bar;
 	}
 
-	public List<WebElement> getitem() {
-		return item;
+	public WebElement getsearch_button() {
+		return search_button;
 	}
 
 	public WebElement getProduct_click() {
@@ -38,14 +38,8 @@ public class Locators {
 		return addToCart_button;
 	}
 
-	public List<WebElement> getItem() {
-		return item;
-	}
-
 	public WebElement getCartaddedmessage() {
 		return cartaddedmessage;
 	}
-	
-	
 
 }

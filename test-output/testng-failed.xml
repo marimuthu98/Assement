@@ -5,9 +5,11 @@
     <classes>
       <class name="com.test.Testcase">
         <methods>
+          <include name="TIME_AFTERTEST"/>
           <include name="BROWSER_LANUCH"/>
+          <include name="TIME_BEFORETEST"/>
+          <include name="CLOSE_BROWSER"/>
           <include name="TC_1"/>
-          <include name="date1"/>
         </methods>
       </class> <!-- com.test.Testcase -->
     </classes>
