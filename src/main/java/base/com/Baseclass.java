@@ -1,13 +1,19 @@
 package base.com;
 
+import java.io.File;
 import java.time.Duration;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import org.testng.Assert;
-
+import org.testng.ITestResult;
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -190,5 +196,32 @@ public class Baseclass {
 		WebDriverWait wait = new WebDriverWait(driver, 60);
 		wait.until(ExpectedConditions.visibilityOf(element));
 	}
+	
+	public static void FailedMethodTakesscreenshot(ITestResult result) throws Exception {
+
+
+		TakesScreenshot scr = (TakesScreenshot) driver;
+	    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd-HH-mm-ss");
+	    LocalDateTime ldt = LocalDateTime.now();
+	    String TimeStamp = dtf.format(ldt);
+	    File srcFile = scr.getScreenshotAs(OutputType.FILE);
+
+	    if (result.FAILURE == result.getStatus()) {
+	        String directory = System.getProperty("user.dir") + "/FailureScreenShots/";
+	        File dir = new File(directory);
+	        if (!dir.exists()) {
+	            dir.mkdirs();
+	        }
+	        String destination = directory + TimeStamp + "-" + result.getName() + ".png";
+	        File destFile = new File(destination);
+	        FileUtils.copyFile(srcFile, destFile);
+	    } else if (result.SKIP == result.getStatus()) {
+	    } else if (result.SUCCESS == result.getStatus()) {
+
+	    }
+
+	}
+
+	
 
 }

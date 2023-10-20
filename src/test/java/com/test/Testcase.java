@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeTest;
@@ -41,12 +42,14 @@ public class Testcase extends Baseclass {
 		SEARCH_PAGE.product_add_card();
 	}
 
-	@BeforeClass
+
+	
+	@AfterClass
 	private void CLOSE_BROWSER() {
 		closeallbrowser();
 	}
 
-	@BeforeTest
+	@AfterTest
 	private void TIME_AFTERTEST() {
 
 		Date date = new Date();
